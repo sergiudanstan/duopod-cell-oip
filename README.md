@@ -9,7 +9,11 @@ OIP part, and an ST program drives it through a handshake, the way a real PLC wo
 
 ## Open it
 
-- **In the browser:** go to [openindustryproject.org/app](https://openindustryproject.org/app), choose **Import Project**
+- **Live:** [sergiudanstan.github.io/duopod-cell-oip](https://sergiudanstan.github.io/duopod-cell-oip/). The OIP editor
+  opens with the cell loaded and already running. Stop, E-STOP, START, edit the PLC program or run the project tests
+  right there. It is OIP's own editor (pinned commit, MIT) built by `tools/build_site.sh` and served from the
+  `gh-pages` branch. It is not the official openindustryproject.org deployment.
+- **In the official app:** go to [openindustryproject.org/app](https://openindustryproject.org/app), choose **Import Project**
   and pick [`dist/duopod-cell.scene.json`](dist/duopod-cell.scene.json). Press Play, then the green START button on the
   operator panel.
 - **As a project folder:** this repository *is* the OIP project folder (`project.json`, `scene.json`, `plc/`, `parts/`,
@@ -98,6 +102,7 @@ twins, not identical to them. Nothing here is physically validated.
 | `tools/make_part.sh` | export the procedural model from duopod-cell-pro (`?cad=0`), weld + Draco, write the part |
 | `tools/build_scene.sh` | lay the whole scene out with OIP's `add-part` (every parameter checked), bind `plc/` and `tests/` |
 | `tools/scene_file.mjs` | write `dist/duopod-cell.scene.json`, the one-file scene for Import Project |
+| `tools/build_site.sh` | build the GitHub Pages site (OIP editor + `site/`: base-path shim, auto-load of the cell) |
 | `tools/record.mjs` | stills + MP4 of the cell running in the local OIP editor (Playwright) |
 
 The scripts expect the OIP checkout at `~/code/_vendor/open-industry-project`; set `OIP=` to use another location.
