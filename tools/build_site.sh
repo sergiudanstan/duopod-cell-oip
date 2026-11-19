@@ -10,7 +10,7 @@ BASE=/duopod-cell-oip/
 node $P/tools/scene_file.mjs $P/dist/duopod-cell.scene.json
 (cd $OIP && npx vite build --base $BASE --outDir $OUT --emptyOutDir --logLevel error)
 # the marketing site, its videos and the Netlify files are not needed
-rm -rf $OUT/{landing,guides,plc,privacy,sim-loop*,og-image.jpg,_headers,_redirects}
+rm -rf $OUT/{landing,guides,plc,sim-loop*,og-image.jpg,_headers,_redirects}   # privacy/ stays: the service worker precaches it
 cp $P/site/index.html $OUT/index.html
 cp $P/site/base-shim.js $P/site/autoload.js $OUT/app/
 perl -0pi -e "s#<head>#<head>\n<script src=\"${BASE}app/base-shim.js\"></script>\n<script src=\"${BASE}app/autoload.js\"></script>#" $OUT/app/index.html
