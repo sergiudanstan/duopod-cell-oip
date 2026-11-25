@@ -1,5 +1,10 @@
 # DuoPod transfer cell in Open Industry Project
 
+[![CI](https://github.com/sergiudanstan/duopod-cell-oip/actions/workflows/ci.yml/badge.svg)](https://github.com/sergiudanstan/duopod-cell-oip/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/sergiudanstan/duopod-cell-oip/actions/workflows/codeql.yml/badge.svg)](https://github.com/sergiudanstan/duopod-cell-oip/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/sergiudanstan/duopod-cell-oip/badge)](https://scorecard.dev/viewer/?uri=github.com/sergiudanstan/duopod-cell-oip)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A ceiling-mounted 2-axis parallel robot (modelled on the Autonox DuoPod) moves 3 kg cartons one at a time from an
 infeed belt to the outfeed belt beside it. The cell is built in [Open Industry Project](https://openindustryproject.org)
 (OIP), a free, MIT-licensed browser simulator with Jolt physics and a built-in IEC 61131-3 PLC. The robot is a custom
@@ -109,6 +114,29 @@ The scripts expect the OIP checkout at `~/code/_vendor/open-industry-project`; s
 
 **Pinned OIP commit:** [`7ed2b7d`](https://github.com/Open-Industry-Project/Open-Industry-Project/commit/7ed2b7dbf01835365ba3432bbdd84d933a843dde)
 (2026-11-19). OIP is an early release and its formats may change.
+
+## Development
+
+CI (`.github/workflows/ci.yml`) runs on every push and pull request, against the pinned OIP commit
+[`7ed2b7d`](https://github.com/Open-Industry-Project/Open-Industry-Project/commit/7ed2b7dbf01835365ba3432bbdd84d933a843dde):
+
+1. **OIP project checks and tests**: `check-part`, `validate-project --strict`, `check-st`, `check-wiring --strict`,
+   `check-layout`, the three project tests, and `tools/perturb.sh` (the tests must fail on mutated programs).
+2. **Published site smoke test**: builds the GitHub Pages site with `tools/build_site.sh`, opens it in headless Chrome
+   (`tests/site-smoke.mjs`) and fails unless the cell loads, the PLC runs and the robot picks a carton, with no page
+   error or failed request.
+3. **Security audit**: `pip-audit` on the hash-pinned CI toolchain, `npm audit` on the test tooling, and `zizmor` on
+   the workflows. CodeQL and OpenSSF Scorecard run as their own workflows.
+
+To run the site test locally (needs Google Chrome; set `PW_CHANNEL=chromium` for Playwright's Chromium):
+
+```sh
+npm ci --ignore-scripts
+OIP=/path/to/open-industry-project tools/build_site.sh _build/site
+node tests/site-smoke.mjs _build/site
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) and [CHANGELOG.md](CHANGELOG.md).
 
 ## Licences and disclaimer
 
