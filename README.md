@@ -1,5 +1,8 @@
 # DuoPod transfer cell in Open Industry Project
 
+> **This repository has moved to [sergiudanstan/oip-cells](https://github.com/sergiudanstan/oip-cells/tree/main/cells/duopod) and is archived.**
+> The cell now lives in `cells/duopod/` with its history preserved. Live: https://sergiudanstan.github.io/oip-cells/duopod/
+
 [![CI](https://github.com/sergiudanstan/duopod-cell-oip/actions/workflows/ci.yml/badge.svg)](https://github.com/sergiudanstan/duopod-cell-oip/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/sergiudanstan/duopod-cell-oip/actions/workflows/codeql.yml/badge.svg)](https://github.com/sergiudanstan/duopod-cell-oip/actions/workflows/codeql.yml)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/sergiudanstan/duopod-cell-oip/badge)](https://scorecard.dev/viewer/?uri=github.com/sergiudanstan/duopod-cell-oip)
